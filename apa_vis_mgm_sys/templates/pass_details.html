@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'pass_details.css' %}">
+    <script>
+        function confirmLogout() {
+            return confirm("Are you sure you want to log out?");
+        }
+    </script>
+    <title>AVMS</title>
+</head>
+<body>
+    <section class="top">
+        <h1 class="top1">AVMS</h1>
+        <h1 class="head">Welcome</h1>
+        <a class="icon" href="{% url 'logout' %}" onclick="return confirmLogout()"><i class="ri-account-circle-fill"></i></a>
+    </section>    
+    <div class="maincontainer">
+        <div class="sidebar">
+            <ul>
+                <li><a href="{% url 'index' %}"><div class="activelink"><i class="ri-dashboard-2-line"></i>&nbsp;Dashboard</div></a></li>                
+                <li><a href="{% url 'add_visitor' %}"><div class="sidetext"><i class="ri-team-line"></i>&nbsp;Add Visitor</div></a></li>
+                <li><a href="{% url 'manage_visitor' %}"><div class="sidetext"><i class="ri-team-line"></i>&nbsp;Manage Visitor</div></a></li>
+                <li><a href="{% url 'pass_form' %}"><div class="sidetext"><i class="ri-pass-valid-line"></i>&nbsp;Add Pass</div></a></li>
+                <li><a href="{% url 'manage_pass' %}"><div class="sidetext"><i class="ri-pass-valid-line"></i>&nbsp;Manage Pass</div></a></li>
+                <li><a href="{% url 'search_visitor' %}"><div class="sidetext"><i class="ri-search-line"></i>&nbsp;Search Visitor</div></a></li>
+                <li><a href="{% url 'search_pass' %}"><div class="sidetext"><i class="ri-search-line"></i>&nbsp;Search Pass</div></a></li>
+                <li><a href="{% url 'visitor_report' %}"><div class="sidetext"><i class="ri-folder-2-fill"></i>&nbsp;Visitor Report</div></a></li>
+                <li><a href="{% url 'pass_report' %}"><div class="sidetext"><i class="ri-folder-2-fill"></i>&nbsp;Pass Report</div></a></li>
+            </ul>       
+            
+        </div>
+    
+        <div class="display">
+            
+            <table border="1" cellpadding="10" cellspacing="0" style="width: 100%;">
+                <tr>
+                    <th colspan="4">Visitor Details</th>            
+                </tr>
+                <tr>
+                    <th>Pass number</th>
+                    <td colspan="3">{{pass_details.id}}</td>            
+                </tr>
+                <tr>
+                    <th>Visitor Name</th>
+                    <td>{{pass_details.name}}</td>
+                    <th>Category</th>
+                    <td>{{pass_details.category}}</td>
+                </tr>
+                <tr>
+                    <th>Mobile Number</th>
+                    <td>{{pass_details.phone_number}}</td>
+                    <th>Address</th>
+                    <td>{{pass_details.address}}</td>
+                </tr>
+                <tr>
+                    <th colspan="4">Pass Details</th>
+                </tr>
+                <tr>
+                    <th>Apartment no</th>
+                    <td>{{pass_details.apartment_number}}</td>
+                    <th>Floor</th>
+                    <td>{{pass_details.floor}}</td>
+                </tr>
+                <tr>
+                    <th>From Date</th>
+                    <td>{{pass_details.from_date}}</td>
+                    <th>To Date</th>
+                    <td>{{pass_details.to_date}}</td>
+                </tr>
+                <tr>
+                    <th>Pass Description</th>
+                    <td colspan="3">{{pass_details.category}}</td>
+                </tr>
+                <tr>
+                    <th>Pass Creation Date</th>
+                    <td colspan="3">{{pass_details.created_datetime}}</td>
+                </tr>
+            </table>
+            <button onclick="window.print()">Print</button>
+        </div>
+    </div>
+    
+</body>
+</html>
+

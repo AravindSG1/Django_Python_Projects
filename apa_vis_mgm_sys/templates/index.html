@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <script>
+        function confirmLogout() {
+            return confirm("Are you sure you want to log out?");
+        }
+    </script>
+    <title>AVMS</title>
+</head>
+<body>
+    <section class="top">
+        <h1 class="top1">AVMS</h1>
+        <h1 class="head">Welcome</h1>
+        <a class="icon" href="{% url 'logout' %}" onclick="return confirmLogout()"><i class="ri-account-circle-fill"></i></a>
+    </section>    
+    <div class="maincontainer">
+        <div class="sidebar">
+            <ul>
+                <li><a href="{% url 'index' %}"><div class="activelink"><i class="ri-dashboard-2-line"></i>&nbsp;Dashboard</div></a></li>                
+                <li><a href="{% url 'add_visitor' %}"><div class="sidetext"><i class="ri-team-line"></i>&nbsp;Add Visitor</div></a></li>
+                <li><a href="{% url 'manage_visitor' %}"><div class="sidetext"><i class="ri-team-line"></i>&nbsp;Manage Visitor</div></a></li>
+                <li><a href="{% url 'pass_form' %}"><div class="sidetext"><i class="ri-pass-valid-line"></i>&nbsp;Add Pass</div></a></li>
+                <li><a href="{% url 'manage_pass' %}"><div class="sidetext"><i class="ri-pass-valid-line"></i>&nbsp;Manage Pass</div></a></li>
+                <li><a href="{% url 'search_visitor' %}"><div class="sidetext"><i class="ri-search-line"></i>&nbsp;Search Visitor</div></a></li>
+                <li><a href="{% url 'search_pass' %}"><div class="sidetext"><i class="ri-search-line"></i>&nbsp;Search Pass</div></a></li>
+                <li><a href="{% url 'visitor_report' %}"><div class="sidetext"><i class="ri-folder-2-fill"></i>&nbsp;Visitor Report</div></a></li>
+                <li><a href="{% url 'pass_report' %}"><div class="sidetext"><i class="ri-folder-2-fill"></i>&nbsp;Pass Report</div></a></li>
+            </ul>       
+            
+        </div>
+    
+        <div class="display">
+            <div class="box1">
+                <h1>Total Visitor</h1>
+                <i class="ri-team-line"></i>
+                <h1>--------------------{{total_visitors}}--------------------</h1>
+            </div>
+            <div class="box2">
+                <h1>Today's Visitor</h1>
+                <i class="ri-team-line"></i>
+                <h1>{{todays_visitor}}</h1>
+            </div>
+            <div class="box3">
+                <h1>Yesterday's Visitor</h1>
+                <i class="ri-team-line"></i>
+                <h1>{{yesterdays_visitor}}</h1>
+            </div>
+            <div class="box4">
+                <h1>Last Seven day's Visitor</h1>
+                <i class="ri-team-line"></i>
+                <h1>{{week_visitor}}</h1>
+            </div>
+            <div class="box5">
+                <h1>Total Pass Created</h1>
+                <i class="ri-team-line"></i>
+                <h1>{{total_pass}}</h1>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+

@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'search_pass.css' %}">
+    <script>
+        function confirmLogout() {
+            return confirm("Are you sure you want to log out?");
+        }
+    </script>
+    <title>AVMS</title>
+</head>
+<body>
+    <section class="top">
+        <h1 class="top1">AVMS</h1>
+        <h1 class="head">Welcome</h1>
+        <a class="icon" href="{% url 'logout' %}" onclick="return confirmLogout()"><i class="ri-account-circle-fill"></i></a>
+    </section>    
+    <div class="maincontainer">
+        <div class="sidebar">
+            <ul>
+                <li><a href="{% url 'index' %}"><div class="sidetext"><i class="ri-dashboard-2-line"></i>&nbsp;Dashboard</div></a></li>                
+                <li><a href="{% url 'add_visitor' %}"><div class="sidetext"><i class="ri-team-line"></i>&nbsp;Add Visitor</div></a></li>
+                <li><a href="{% url 'manage_visitor' %}"><div class="sidetext"><i class="ri-team-line"></i>&nbsp;Manage Visitor</div></a></li>
+                <li><a href="{% url 'pass_form' %}"><div class="sidetext"><i class="ri-pass-valid-line"></i>&nbsp;Add Pass</div></a></li>
+                <li><a href="{% url 'manage_pass' %}"><div class="sidetext"><i class="ri-pass-valid-line"></i>&nbsp;Manage Pass</div></a></li>
+                <li><a href="{% url 'search_visitor' %}"><div class="sidetext"><i class="ri-search-line"></i>&nbsp;Search Visitor</div></a></li>
+                <li><a href="{% url 'search_pass' %}"><div class="activelink"><i class="ri-search-line"></i>&nbsp;Search Pass</div></a></li>
+                <li><a href="{% url 'visitor_report' %}"><div class="sidetext"><i class="ri-folder-2-fill"></i>&nbsp;Visitor Report</div></a></li>
+                <li><a href="{% url 'pass_report' %}"><div class="sidetext"><i class="ri-folder-2-fill"></i>&nbsp;Pass Report</div></a></li>
+            </ul>        
+            
+        </div> 
+                 
+        <div class="display">
+            <h3>Search Visitor Pass Data</h3>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="searchfield">
+                    <label for="">Search(User Name or <br>Mobile Number)</label>
+                    <input type="text" name="searchpass"><br>
+                    <button class="search" type="submit">Search</button>
+                </div>                
+                
+                
+            </form>
+            
+            <table cellpadding="25" cellspacing="0" border="0">
+                <tr>
+                    <th>S.No</th>
+                    <th>Full Name</th>
+                    <th>Contact Number</th>                    
+                    <th>Entry Date and Time</th>
+                    <th>Floor/Wings</th>
+                    <th>Action</th>
+                </tr>
+                {% for i in filtered_data %}
+                <tr>
+                    <td>{{i.id}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.phone_number}}</td>
+                    <td>{{i.created_datetime}}</td>
+                    <td>{{i.floor}}</td>                    
+                    <td>
+                        <a class="view_details" href="{% url 'pass_details' id=i.id %}">View Details</a>
+                        <a class="delete" href="{% url 'delete_pass' id=i.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                
+        </div>
+    </div>
+    
+</body>
+</html>
+

@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'add_visitor.css' %}">
+    <script>
+        function confirmLogout() {
+            return confirm("Are you sure you want to log out?");
+        }
+    </script>
+    <title>AVMS</title>
+</head>
+<body>
+    <section class="top">
+        <h1 class="top1">AVMS</h1>
+        <h1 class="head">Welcome</h1>
+        <a class="icon" href="{% url 'logout' %}" onclick="return confirmLogout()"><i class="ri-account-circle-fill"></i></a>
+    </section>    
+    <div class="maincontainer">
+        <div class="sidebar">
+            <ul>
+                <li><a href="{% url 'index' %}"><div class="sidetext"><i class="ri-dashboard-2-line"></i>&nbsp;Dashboard</div></a></li>                
+                <li><a href="{% url 'add_visitor' %}"><div class="activelink"><i class="ri-team-line"></i>&nbsp;Add Visitor</div></a></li>                
+                <li><a href="{% url 'manage_visitor' %}"><div class="sidetext"><i class="ri-team-line"></i>&nbsp;Manage Visitor</div></a></li>
+                <li><a href="{% url 'pass_form' %}"><div class="sidetext"><i class="ri-pass-valid-line"></i>&nbsp;Add Pass</div></a></li>
+                <li><a href="{% url 'manage_pass' %}"><div class="sidetext"><i class="ri-pass-valid-line"></i>&nbsp;Manage Pass</div></a></li>
+                <li><a href="{% url 'search_visitor' %}"><div class="sidetext"><i class="ri-search-line"></i>&nbsp;Search Visitor</div></a></li>
+                <li><a href="{% url 'search_pass' %}"><div class="sidetext"><i class="ri-search-line"></i>&nbsp;Search Pass</div></a></li>
+                <li><a href="{% url 'visitor_report' %}"><div class="sidetext"><i class="ri-folder-2-fill"></i>&nbsp;Visitor Report</div></a></li>
+                <li><a href="{% url 'pass_report' %}"><div class="sidetext"><i class="ri-folder-2-fill"></i>&nbsp;Pass Report</div></a></li>
+            </ul>        
+            
+        </div>
+    
+        <div class="display"> 
+            
+            <h3>Apartment Visitor Form</h3>
+            {% if message %}
+            <p class="message">{{ message }}</p>
+            {% endif %}           
+            <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="Inputbox">
+                        <label for="">Category</label>
+                        <select name="category">
+                            <option value="" >Choose category</option>
+                            <option>Guest</option>
+                            <option>Cook</option>
+                            <option>Maid</option>
+                            <option>Car Cleaner</option>
+                            <option>Laundary</option>
+                            <option>Gardener</option><option>Maid</option>
+                            <option>Driver</option>
+                            <option>Newspaper</option>
+                            <option>Milkman</option>
+                            <option>Others</option>
+                        </select>
+                    </div>
+                    
+                    <div class="Inputbox">
+                        <label for="">Full Name</label>
+                        <input type="text" name="name" placeholder="Full name">
+                    </div>
+                    
+                    <div class="Inputbox">
+                            <label for="">Email Input</label>
+
+                        <input type="email" name="email" placeholder="Email Input">
+                    </div>
+                    
+                    <div class="Inputbox">
+                        <label for="">Phone Number</label>
+                        <input type="text" name="phone_no" placeholder="Phone Number">
+                    </div>
+                    
+                    <div class="Inputbox">
+                        <label for="">Address</label>
+                        <textarea placeholder="Enter Visitor Address" name="address"></textarea>
+                    </div>
+                    
+                    <div class="Inputbox">
+                        <label for="">Apartment Number</label>
+                        <input type="number" name="apartment_no" placeholder="Apartment Number">
+                    </div>
+                    
+                    <div class="Inputbox">
+                        <label for="">Floor</label>
+                        <input type="text" name="floor" placeholder="Floor">
+                    </div>
+                    
+                    <div class="Inputbox">
+                        <label for="">Person to meet</label>
+                        <input type="text" name="person_to_meet" placeholder="Person to meet">
+                    </div>
+                    
+                    <div class="Inputbox">
+                        <label for="">Reason to meet</label>
+                        <input type="text" name="reason_to_meet" placeholder="Reason to meet">
+                    </div>                                
+
+                <button class="add" type="submit">Add</button>
+            </form>
+            
+        </div>
+    </div>
+    
+</body>
+</html>
+
