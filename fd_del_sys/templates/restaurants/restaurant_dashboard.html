@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/restaurants/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/restaurants/restaurant_dashboard.css' %}">
+    <title>Homepage</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="appname">OFDS</div>
+        <ul>
+            <li class="profile"><img src="{{user.restaurant.logo.url}}" alt="">{{user.restaurant.restaurant_name}}</li>            
+            <li><a href="{% url 'restaurant_dashboard' %}">🏠Dashboard</a></li>
+            <li><a href="{% url 'restaurant_fooditems' %}">🍔Food Items</a></li>
+            <li><a href="{% url 'restaurant_orders' %}">📦Orders</a></li>            
+            <li><a href="{% url 'restaurant_profile' %}">👤Profile</a></li>
+            <li><a href="{% url 'logout' %}">🚪Logout</a></li>            
+        </ul>
+    </div>
+
+    <h1>Restaurant</h1>    
+    
+
+    <div class="display">
+        <div class="box1">
+            <h1>Total Orders</h1>
+            <div class="icon">📦</div>
+            <h1>--------------------{{total_order_nos}}--------------------</h1>
+        </div>
+        <div class="box2">
+            <h1>Preparing</h1>
+            <div class="icon">🥣</div>                
+            <h1>{{preparing}}</h1>
+        </div>
+        <div class="box3">
+            <h1>Delivered</h1>
+            <div class="icon">🚚</div>
+            <h1>{{delivered}}</h1>
+        </div>
+        <div class="box4">
+            <h1>Cancelled</h1>
+            <div class="icon">❌</div>
+            <h1>{{cancelled}}</h1>
+        </div>
+        <div class="box5">
+            <h1>Avg. Daily Revenue:</h1>
+            <div class="icon">💰</div>
+            <h1>₹{{total}}</h1>
+        </div>
+    </div>
+
+    
+    <div class="foods">    
+        <h1 class="heading">🔥 Popular Items Today:</h1>
+            <div class="foodcard">                
+                <div class="logo"><img src="/media/restaurants/food_images/beefroast.jpg" alt=""></div>
+                <div class="description">
+                    Biryani (30 📦Orders)                                         
+                </div>
+            </div>        
+    </div>
+
+</body>
+</html>

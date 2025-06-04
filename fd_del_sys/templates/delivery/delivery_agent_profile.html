@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/delivery/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/delivery/delivery_agent_profile.css' %}">
+    <title>Profile</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="appname">OFDS</div>
+        <ul>
+            <li class="profile"><img src="{{user.deliveryagentprofile.profile_pic.url}}" alt="">{{user.username}}</li>            
+            <li><a href="{% url 'delivery_agent_dashboard' %}">🏠Dashboard</a></li>
+            <li><a href="{% url 'delivery_agent_mydeliveries' %}">📦My Deliveries</a></li>                        
+            <li><a href="{% url 'delivery_agent_profile' %}">👤Profile</a></li>
+            <li><a href="{% url 'logout' %}">🚪Logout</a></li>            
+        </ul>
+    </div>
+
+          <!-- Profile Content -->
+    <div class="profile-container">
+    <h2>👤 My Profile</h2>
+        <img class="profile-pic-large" src="{{user.deliveryagentprofile.profile_pic.url}}" alt="">
+
+
+    <div class="profile-info">
+      <p><span>🛵 Role:</span>Delivery Agent</p>
+      <p><span>📛 Username:</span>{{user.username}}</p>
+      <p><span>📧 Email:</span>{{user.email}}</p>
+      <p><span>📱 Phone:</span>{{user.deliveryagentprofile.phone}}</p>
+      <p><span>🏠 Address:</span>{{user.deliveryagentprofile.address}}</p>
+    </div>
+
+    <a href="{% url 'delivery_agent_edit_profile' %}" class="edit-btn">✏️ Edit Profile</a>
+  </div>
+
+</body>
+</html>

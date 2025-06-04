@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/core/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/core/index.css' %}">
+    <title>Homepage</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="name">👨‍🍳OFDS</div>
+        <ul  class="nav-menu">   
+            <li><a href="{% url 'homepage' %}">Home</a></li>         
+            <li class="dropdown">Registration
+                <ul class="submenu">
+                    <li><a href="{% url 'restaurant_form' %}">Restaurant</a></li>
+                    <li><a href="{% url 'delivery_agent_form' %}">Delivery Agent</a></li>
+                </ul>
+            </li>
+            <li><a href="{% url 'login_page' %}">Login</a></li>
+            <li><a href="{% url 'customer_form' %}">Sign up</a></li>
+        </ul>
+    </div>   
+
+    <div class="main-img"><img src="/static/images/homepage1.jpg" alt=""></div>    
+    
+    <footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>🍴 OFDS</h3>
+      <p>Delivering your favorite meals fast and fresh!</p>
+    </div>
+
+    <div class="footer-section">
+      <h4>🚀 Quick Links</h4>
+      <ul>
+        <li><a href="#">🏠 Home</a></li>
+        <li><a href="#">🍔 Browse Restaurants</a></li>
+        <li><a href="#">🚚 Track Order</a></li>
+        <li><a href="#">👨‍🍳 About Us</a></li>
+        <li><a href="#">📃 Terms & Privacy</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>📞 Contact Us</h4>
+      <p>📍 123 Food Street, Flavor Town</p>
+      <p>📞 +1-800-FOOD-123</p>
+      <p>📧 support@ofds.com</p>
+    </div>
+
+    <div class="footer-section">
+      <h4>🌐 Follow Us</h4>
+      <p>
+        👍 <a href="#">Facebook</a><br>
+        🐦 <a href="#">Twitter</a><br>
+        📸 <a href="#">Instagram</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 OFDS. All rights reserved.</p>
+  </div>
+</footer>
+
+
+
+</body>
+</html>

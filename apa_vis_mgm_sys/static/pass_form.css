@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    /* text-align: center; */
+    background-color: rgb(245, 233, 233);
+}
+/* ---------------------------------section 1----------------------------------- */
+.top{
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    background-color: rgb(206, 206, 187);
+}
+.top .top1{
+    background-color: blue;
+    color: white;
+    text-align: end;
+    padding-right: 15%;
+}
+.top .head{
+    color: purple;
+    font-size: 40px;
+}
+.top i{
+    font-size: 50px;
+}
+/* ---------------------------------section 2----------------------------------- */
+.maincontainer{
+    display: flex;
+    justify-content: space-between;
+}
+.sidebar{    
+    background-color: rgb(236, 206, 211);
+    width: 20%;    
+}
+.sidebar a{
+    text-decoration: none;
+}
+
+.sidebar .sidetext{
+    text-decoration: none;
+    color: blueviolet;    
+}
+.activelink{
+    background-color: rgb(245, 233, 233);
+    color: blue;
+}
+.sidebar ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 20px;
+}
+/* --------------------------------------------------------------------------------------- */
+
+.display{    
+    width: 70%;
+    /* display: flex;  
+    align-items: center;     */
+}
+.display h3{
+    text-align: center;
+    font-size: 25px;
+    color: #df2a60;
+}
+.message{
+    color: green;
+    background-color: yellow;
+    width: 23%;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-around;
+}
+
+.navbar a{
+    text-decoration: none;
+}
+.Inputbox input {
+    width: 400px;
+}
+.Inputbox{
+    display: flex;
+    gap: 50px;
+}
+.Inputbox input{
+    outline: none;
+}
+textarea{
+    outline: none;
+    width: 400px;
+}
+.Inputbox label{
+    font-size: 20px;   
+    width: 200px;
+}
+
+button{
+    width: 20%;
+    padding: 1%;    
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    margin: 0 auto;
+}

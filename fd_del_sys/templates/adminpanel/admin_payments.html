@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/adminpanel/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/adminpanel/admin_manage_users.css' %}">
+    
+    <title>AdminPanel</title>
+</head>
+<body>
+    <section class="top">
+        <h1 class="top1">👨‍🍳OFDS</h1>
+        <h1 class="head">Admin Panel</h1>
+        <h1>{{user}}</h1>
+    </section>    
+    <div class="maincontainer">
+        <div class="sidebar">
+            <ul>
+                <li><a href="{% url 'admin_dashboard' %}"><div class="sidetext">🏠&nbsp;Dashboard</div></a></li>                
+                <li><a href="{% url 'admin_manage_users' %}"><div class="sidetext">🧑‍🤝‍🧑&nbsp;Manage Users</div></a></li>
+                <li><a href="{% url 'admin_restaurants' %}"><div class="sidetext">🍽️&nbsp;Restaurants</div></a></li>
+                <li><a href="{% url 'admin_orders' %}"><div class="sidetext">📦&nbsp;Orders</div></a></li>
+                <li><a href="{% url 'admin_payments' %}"><div class="activelink">💰&nbsp;Payments</div></a></li>
+                <li><a href="{% url 'admin_delivery_agents' %}"><div class="sidetext">🚴&nbsp;Delivery Agents</div></a></li>                
+                <li><a href="{% url 'logout' %}"><div class="sidetext">🚪&nbsp;Logout</div></a></li>
+            </ul>                   
+        </div>
+    
+            
+        <div class="tab-content" id="content1">
+            <h1>All Payments</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th><th>Amount</th><th>Method</th>
+                        <th>Txn_ID</th><th>Order ID</th><th>Time</th>  
+                                              
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for payment in payments %}
+                    <tr>
+                        <td>#{{payment.id}}</td>
+                        <td>{{payment.amount}} </td>
+                        <td>{{payment.method}}</td>
+                        <td>{{payment.txn_id}}</td>
+                        <td>{{payment.order.id}}</td>
+                        <td>{{payment.paid_at}}</td>                  
+                                
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>        
+        </div>
+           
+    </div>
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to Delete?");
+        }
+    </script>
+    
+</body>
+</html>
+

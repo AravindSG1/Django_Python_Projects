@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/adminpanel/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/adminpanel/admin_restaurants.css' %}">
+    
+    <title>AdminPanel</title>
+</head>
+<body>
+    <section class="top">
+        <h1 class="top1">👨‍🍳OFDS</h1>
+        <h1 class="head">Admin Panel</h1>
+        <h1>{{user}}</h1>
+    </section>    
+    <div class="maincontainer">
+        <div class="sidebar">
+            <ul>
+                <li><a href="{% url 'admin_dashboard' %}"><div class="sidetext">🏠&nbsp;Dashboard</div></a></li>                
+                <li><a href="{% url 'admin_manage_users' %}"><div class="sidetext">🧑‍🤝‍🧑&nbsp;Manage Users</div></a></li>
+                <li><a href="{% url 'admin_restaurants' %}"><div class="activelink">🍽️&nbsp;Restaurants</div></a></li>
+                <li><a href="{% url 'admin_orders' %}"><div class="sidetext">📦&nbsp;Orders</div></a></li>
+                <li><a href="{% url 'admin_payments' %}"><div class="sidetext">💰&nbsp;Payments</div></a></li>
+                <li><a href="{% url 'admin_delivery_agents' %}"><div class="sidetext">🚴&nbsp;Delivery Agents</div></a></li>                
+                <li><a href="{% url 'logout' %}"><div class="sidetext">🚪&nbsp;Logout</div></a></li>
+            </ul>       
+            
+        </div>
+    
+        <div class="content">
+        <h1>📦All Restaurants</h1>
+        <input type="radio" id="tab1" name="tabs" checked>
+        <label for="tab1" class="tab-label">🟩 Approved Restaurants</label>
+
+        <input type="radio" id="tab2" name="tabs">
+        <label for="tab2" class="tab-label">🟦 Waiting for Approval</label>
+
+        <div class="content">
+            <div class="tab-content" id="content1">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Restaurant ID</th><th>Name</th><th>Owner</th>
+                            <th>Address</th><th>Phone</th><th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for restaurant in approved_restaurants %}
+                        <tr>
+                            <td>#{{restaurant.id}}</td>
+                            <td>{{restaurant.restaurant_name}} </td>
+                            <td>{{restaurant.owner}}</td>
+                            <td>{{restaurant.address}}</td>
+                            <td>{{restaurant.phone}}</td>
+                            <td>{{restaurant.restaurant_email}}</td>
+                            <td>
+                                <div class="btnflex">
+                                    <a class="btn" href="{% url 'restaurant_details' id=restaurant.id %}">View Details</a>
+                                    <a class="btn btn-delete" href="{% url 'delete_restaurant' id=restaurant.id %}"
+                                    onclick="return confirmDelete()">Delete</a>
+                                </div>
+                                
+                            </td>
+                                   
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>        
+            </div>
+
+            <div class="tab-content" id="content2">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Restaurant ID</th><th>Name</th><th>Owner</th>
+                            <th>Address</th><th>Phone</th><th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for restaurant in on_hold_res %}
+                        <tr>
+                            <td>#{{restaurant.id}}</td>
+                            <td>{{restaurant.restaurant_name}} </td>
+                            <td>{{restaurant.owner}}</td>
+                            <td>{{restaurant.address}}</td>
+                            <td>{{restaurant.phone}}</td>
+                            <td>{{restaurant.restaurant_email}}</td>
+                            <td><a class="btn" href="{% url 'restaurant_approval' id=restaurant.id %}">Approve</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+           
+    </div>
+    
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to Delete?");
+        }
+    </script>
+
+</body>
+</html>
+

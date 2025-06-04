@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+    <title>Login</title>
+</head>
+<body>
+    <div class="fullcontainer">
+        <h1><i class="ri-building-4-line"></i>Apartment Visitor System</h1>
+    <div class="input">
+        <form action="" method="post">
+            {% csrf_token %}
+            <input  type="text" name="username" class="userbox" placeholder="username"><br>  <!-- username:  -->
+            <input class="passwordbox" type="password" name="password" placeholder="password"><br> <!-- password: -->
+            <button type="submit" id="signin">Sign In</button>
+        </form>
+        
+    </div>
+    </div>
+    
+    
+</body>
+</html>

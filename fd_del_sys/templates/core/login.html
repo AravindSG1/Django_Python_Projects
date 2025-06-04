@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/core/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/core/login.css' %}">
+    <title>Login</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="name">👨‍🍳OFDS</div>
+        <ul  class="nav-menu">       
+            <li><a href="{% url 'homepage' %}">Home</a></li>     
+            <li class="dropdown">Registration
+                <ul class="submenu">
+                    <li><a href="{% url 'restaurant_form' %}">Restaurant</a></li>
+                    <li><a href="{% url 'delivery_agent_form' %}">Delivery Agent</a></li>
+                </ul>
+            </li>
+            <li><a href="{% url 'login_page' %}">Login</a></li>
+            <li><a href="{% url 'customer_form' %}">Sign up</a></li>
+        </ul>
+    </div>
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li style="color: black" class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+ 
+        <div class="fullcontainer">
+        <h1>👨‍🍳OFDS</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input class="username-field" type="text" name="username" placeholder="username"><br>  <!-- username:  -->
+            <input class="password-field" type="password" name="password" placeholder="password"><br> <!-- password: -->
+            <button type="submit" id="signin">Sign In</button>
+        </form>
+    </div>
+</body>
+</html>

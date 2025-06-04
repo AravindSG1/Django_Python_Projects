@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/customers/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/customers/customer_cart.css' %}">
+    <title>Homepage</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="appname">OFDS</div>
+        <ul>
+            <li><a href="{% url 'customer_homepage' %}">🏠Home</a></li>
+            <li><a href="{% url 'customer_menu' %}">🍽️Menu</a></li>
+            <li><a href="{% url 'customer_orders' %}">📦Orders</a></li>
+            <li><a href="{% url 'customer_cart' %}">🛒Cart</a></li>
+            <li><a class="profile" href="{% url 'customer_profile' %}"><img src="{{user.customerprofile.profile_pic.url}}" alt="">Profile</a></li>
+            <li><a href="{% url 'logout' %}">🚪Logout</a></li>            
+        </ul>
+    </div>
+<!--   
+    <h1>🛒 My Cart</h1>   
+    {% for item in items %}
+
+    {{item.food_item.name}}---- {{item.quantity}}--- {{item.food_item.price}} <br>
+
+    {% endfor %}
+    Total---{{total}}<br>
+
+    
+    <div class="place-order">
+        <a href="{% url 'order_confirmation' %}">Place Order</a>
+    </div> -->
+
+
+    <h1>🛒 My Cart</h1>
+    <div class="cart-container">
+
+        {% for item in items %}
+        <div class="cart-item">
+            <span>{{ item.food_item.name }}</span>
+            <span>{{ item.quantity }}</span>
+            <span>₹{{ item.food_item.price }}</span>
+            <form action="{% url 'delete_cart_item' item.id %}" method="post" style="margin: 0;">
+                {% csrf_token %}
+                <button class="delete-button" type="submit">Delete</button>
+            </form>
+        </div>
+        {% endfor %}
+
+        <div class="total">
+            Total: ₹{{ total }}
+        </div>
+
+        <div class="place-order">
+            <a href="{% url 'order_confirmation' %}">Place Order</a>
+        </div>
+    </div>
+
+</body>
+</html>

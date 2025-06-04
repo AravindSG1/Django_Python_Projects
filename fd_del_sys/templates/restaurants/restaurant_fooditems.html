@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/restaurants/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/restaurants/restaurant_fooditems.css' %}">  
+    <title>Homepage</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="appname">OFDS</div>
+        <ul>
+            <li class="profile"><img src="{{user.restaurant.logo.url}}" alt="">{{user.restaurant.restaurant_name}}</li>            
+            <li><a href="{% url 'restaurant_dashboard' %}">🏠Dashboard</a></li>
+            <li><a href="{% url 'restaurant_fooditems' %}">🍔Food Items</a></li>
+            <li><a href="{% url 'restaurant_orders' %}">📦Orders</a></li>            
+            <li><a href="{% url 'restaurant_profile' %}">👤Profile</a></li>
+            <li><a href="{% url 'logout' %}">🚪Logout</a></li>            
+        </ul>
+    </div>
+
+    <div><a href="{% url 'add_food' %}" class="head"><h1>➕Add New Food Item</h1></a></div>
+    <div class="foods">
+        {% for food in fooditems %}
+            <div class="foodcard">
+                <div class="logo"><img src="{{food.image.url}}" alt=""></div>
+                <div class="description">
+                    <h1>{{food.name}}</h1>
+                    {{food.description}} <br>
+                    <div class="price">Rs.{{food.price}}</div>  <br>
+                    <a class="btn" href="{% url 'edit_food' id=food.id %}">Edit</a> 
+                    <a class="btn red" href="{% url 'delete_food' id=food.id %}"
+                    onclick="return confirmDelete()">Delete</a>                
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to Delete?");
+        }
+    </script>
+
+</body>
+</html>

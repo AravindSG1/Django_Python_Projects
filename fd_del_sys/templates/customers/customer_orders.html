@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/customers/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/customers/customer_orders.css' %}">
+    <title>Homepage</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="appname">OFDS</div>
+        <ul>
+            <li><a href="{% url 'customer_homepage' %}">🏠Home</a></li>
+            <li><a href="{% url 'customer_menu' %}">🍽️Menu</a></li>
+            <li><a href="{% url 'customer_orders' %}">📦Orders</a></li>
+            <li><a href="{% url 'customer_cart' %}">🛒Cart</a></li>
+            <li><a class="profile" href="{% url 'customer_profile' %}"><img src="{{user.customerprofile.profile_pic.url}}" alt="">Profile</a></li>
+            <li><a href="{% url 'logout' %}">🚪Logout</a></li>            
+        </ul>
+    </div>
+
+    <h1 class="head">My Orders</h1>
+    <div class="orders">
+        {% for order in orders %}
+        <div class="order-card">
+            <div class="order-header">
+                <div>📦 Order #{{order.id}}</div>
+                <div class="order-restaurant">🏪 {{order.restaurant.restaurant_name}}</div>
+            </div>
+            <div class="order-items">
+                🧆 Items:
+                <ul>
+                    {% for item in order.items.all %}
+                        <li>{{item.food_item.name}} x {{item.quantity}}</li>
+                    {% empty %}
+                        <li>No items found.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="order-info">💰 Total: ₹{{order.total_amount}} &nbsp;&nbsp;&nbsp;&nbsp; 📅 Delivered: {{order.updated_at}}</div>
+            <div class="order-status">🚚 Status: {{order.status}}</div>
+            <a href="">📄 View Details</a>
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+
+</body>
+</html>

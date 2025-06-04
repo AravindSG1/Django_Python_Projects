@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/adminpanel/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/adminpanel/admin_manage_users.css' %}">
+    
+    <title>AdminPanel</title>
+</head>
+<body>
+    <section class="top">
+        <h1 class="top1">👨‍🍳OFDS</h1>
+        <h1 class="head">Admin Panel</h1>
+        <h1>{{user}}</h1>
+    </section>    
+    <div class="maincontainer">
+        <div class="sidebar">
+            <ul>
+                <li><a href="{% url 'admin_dashboard' %}"><div class="sidetext">🏠&nbsp;Dashboard</div></a></li>                
+                <li><a href="{% url 'admin_manage_users' %}"><div class="sidetext">🧑‍🤝‍🧑&nbsp;Manage Users</div></a></li>
+                <li><a href="{% url 'admin_restaurants' %}"><div class="sidetext">🍽️&nbsp;Restaurants</div></a></li>
+                <li><a href="{% url 'admin_orders' %}"><div class="sidetext">📦&nbsp;Orders</div></a></li>
+                <li><a href="{% url 'admin_payments' %}"><div class="sidetext">💰&nbsp;Payments</div></a></li>
+                <li><a href="{% url 'admin_delivery_agents' %}"><div class="activelink">🚴&nbsp;Delivery Agents</div></a></li>                
+                <li><a href="{% url 'logout' %}"><div class="sidetext">🚪&nbsp;Logout</div></a></li>
+            </ul>                   
+        </div>
+    
+            
+        <div class="tab-content" id="content1">
+            <h1>Delivery Agents</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Agent ID</th><th>Name</th><th>Email</th>
+                        <th>Phone</th><th>Address</th><th>Action</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for agent in agents %}
+                    <tr>
+                        <td>#{{agent.id}}</td>
+                        <td>{{agent.agent.username}} </td>
+                        <td>{{agent.agent.email}}</td>
+                        <td>{{agent.phone}}</td>
+                        <td>{{agent.address}}</td>                        
+                        <td>
+                            <div class="btnflex">
+                                <a class="btn" href="{% url 'delivery_agent_details' id=agent.id %}">View Details</a>
+                                <a class="btn btn-delete" href="{% url 'delete_delivery_agents' id=agent.id %}"
+                                onclick="return confirmDelete()">Delete</a>
+                            </div>
+                            
+                        </td>
+                                
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>        
+        </div>
+           
+    </div>
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to Delete?");
+        }
+    </script>
+    
+</body>
+</html>
+

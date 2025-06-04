@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/adminpanel/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/adminpanel/admin_manage_users.css' %}">
+    
+    <title>AdminPanel</title>
+</head>
+<body>
+    <section class="top">
+        <h1 class="top1">👨‍🍳OFDS</h1>
+        <h1 class="head">Admin Panel</h1>
+        <h1>{{user}}</h1>
+    </section>    
+    <div class="maincontainer">
+        <div class="sidebar">
+            <ul>
+                <li><a href="{% url 'admin_dashboard' %}"><div class="sidetext">🏠&nbsp;Dashboard</div></a></li>                
+                <li><a href="{% url 'admin_manage_users' %}"><div class="sidetext">🧑‍🤝‍🧑&nbsp;Manage Users</div></a></li>
+                <li><a href="{% url 'admin_restaurants' %}"><div class="sidetext">🍽️&nbsp;Restaurants</div></a></li>
+                <li><a href="{% url 'admin_orders' %}"><div class="activelink">📦&nbsp;Orders</div></a></li>
+                <li><a href="{% url 'admin_payments' %}"><div class="sidetext">💰&nbsp;Payments</div></a></li>
+                <li><a href="{% url 'admin_delivery_agents' %}"><div class="sidetext">🚴&nbsp;Delivery Agents</div></a></li>                
+                <li><a href="{% url 'logout' %}"><div class="sidetext">🚪&nbsp;Logout</div></a></li>
+            </ul>                   
+        </div>
+    
+            
+        <div class="tab-content" id="content1">
+            <h1>All Orders</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th><th>Status</th><th>Order Placed</th>
+                        <th>Last Update</th>
+                        <th>Customer ID</th><th>Restaurant ID</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td>#{{order.id}}</td>
+                        <td>{{order.status}} </td>
+                        <td>{{order.placed_at}}</td>
+                        <td>{{order.updated_at}}</td>
+                        <td>{{order.customer.id}}</td>
+                        <td>{{order.restaurant.id}}</td>                                         
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>        
+        </div>
+           
+    </div>
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to Delete?");
+        }
+    </script>
+    
+</body>
+</html>
+

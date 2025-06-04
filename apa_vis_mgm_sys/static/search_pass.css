@@ -1,0 +1,120 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    /* text-align: center; */
+    background-color: rgb(245, 233, 233);
+}
+/* ---------------------------------section 1----------------------------------- */
+.top{
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    background-color: rgb(206, 206, 187);
+}
+.top .top1{
+    background-color: blue;
+    color: white;
+    text-align: end;
+    padding-right: 15%;
+}
+.top .head{
+    color: purple;
+    font-size: 40px;
+}
+.top i{
+    font-size: 50px;
+}
+/* ---------------------------------section 2----------------------------------- */
+.maincontainer{
+    display: flex;
+    justify-content: space-between;
+}
+.sidebar{    
+    background-color: rgb(236, 206, 211);
+    width: 20%;    
+}
+.sidebar a{
+    text-decoration: none;
+}
+
+.sidebar .sidetext{
+    text-decoration: none;
+    color: blueviolet;
+}
+.activelink{
+    background-color: rgb(245, 233, 233);
+    color: blue;
+}
+.sidebar ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 20px;
+}
+/* --------------------------------------------------------------------------------------- */
+.display{
+    width: 80%;        
+}
+.display h3{
+    text-align: center;
+    font-size: 30px;
+    color: #df2a60;
+}
+.searchfield{
+    display: flex;
+    justify-content: center;    
+    gap: 10px;
+}
+.searchfield label{
+    font-size: 20px;
+}
+button{
+    width: 12%;
+    padding: 1%;    
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;    
+}
+.display table{    
+    width: 100%;
+    /* margin: 0 auto; */
+}
+
+table td, table th{
+    padding: 10px;
+    text-align: center;
+}
+table tr:nth-child(even) {
+    background-color: #f2f2f2;  /* light gray for even rows */
+  }
+  
+table tr:nth-child(odd) {
+background-color: #ffffff;  /* white for odd rows */
+}
+.view_details, .delete{
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 5%;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
+}
+.view_details{
+    background-color: green;
+    color: white;    
+}
+.view_details:hover {
+    background-color: #45a049;
+}
+
+.delete{
+    background-color: red;
+    color: white;    
+}
+.delete:hover {
+    background-color: #f44336;
+}

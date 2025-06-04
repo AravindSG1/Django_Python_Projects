@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/restaurants/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/restaurants/restaurant_profile.css' %}">
+    <title>Homepage</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="appname">OFDS</div>
+        <ul>
+            <li class="profile"><img src="{{user.restaurant.logo.url}}" alt="">{{user.restaurant.restaurant_name}}</li>            
+            <li><a href="{% url 'restaurant_dashboard' %}">🏠Dashboard</a></li>
+            <li><a href="{% url 'restaurant_fooditems' %}">🍔Food Items</a></li>
+            <li><a href="{% url 'restaurant_orders' %}">📦Orders</a></li>            
+            <li><a href="{% url 'restaurant_profile' %}">👤Profile</a></li>
+            <li><a href="{% url 'logout' %}">🚪Logout</a></li>            
+        </ul>
+    </div>         
+    
+              <!-- Profile Content -->
+    <div class="profile-container">
+        <h2>🍽️ Restaurant Profile</h2>
+        <img class="logo" src="{{user.restaurant.logo.url}}" alt="">
+
+        <div class="profile-info">        
+            <p><span>🏬 Restaurant Name:</span>{{user.restaurant.restaurant_name}}</p>
+            <p><span>📧 Email:</span>{{user.restaurant.restaurant_email}}</p>
+            <p><span>📱 Phone:</span>{{user.restaurant.phone}}</p>
+            <p><span>🏠 Address:</span>{{user.restaurant.address}}</p>
+            <p><span>📧 Description:</span>{{user.restaurant.description}}</p>
+        </div>
+
+        <!-- <button class="edit-btn">✏️ Edit Profile</button> -->
+         <a href="{% url 'restaurant_edit_profile' %}" class="edit-btn">✏️ Edit Profile</a>
+
+    </div>
+    
+</body>
+</html>
